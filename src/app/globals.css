@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base background for CRT / VHS effect */
+html, body {
+  background: #000;
+  color: #ccc;
+  font-family: monospace;
+  text-shadow: 0 0 1px #00ff00;
+}
