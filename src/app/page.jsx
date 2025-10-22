@@ -1,92 +1,85 @@
 // src/app/page.jsx
-export default function Page() {
+"use client";
+import { useState } from "react";
+
+export default function BasedBankBGM() {
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+
   return (
-    <main className="min-h-screen bg-black text-gray-200 flex flex-col items-center justify-start font-mono relative overflow-hidden p-6">
-      {/* subtle CRT scanlines made with CSS gradient (no image needed) */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-20"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(0deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 1px, transparent 2px, transparent 4px)",
-        }}
-      />
+    <main
+      className="relative flex items-center justify-center min-h-screen bg-black overflow-hidden"
+      style={{
+        backgroundImage: "url('/BB_BGM.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      {/* CRT overlay */}
+      <div className="pointer-events-none absolute inset-0 opacity-15"
+           style={{
+             backgroundImage:
+               "repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 2px, transparent 4px)"
+           }} />
 
-      {/* HERO */}
-      <section className="text-center z-10 mt-10">
-        <h1 className="text-3xl md:text-5xl font-black tracking-wider bg-clip-text text-transparent bg-gradient-to-b from-gray-100 to-gray-500 drop-shadow-[0_0_10px_rgba(0,255,0,.25)]">
-          WELCOME TO BASED GOOSE NETWORK
-        </h1>
-        <h2 className="text-2xl md:text-4xl mt-2 text-slate-200">
-          BASED GOOSE MONEY
-        </h2>
-        <p className="mt-3 text-gray-400">
-          Powered by{" "}
-          <a
-            href="https://bonk.fun/token/3nZg1VZjT8qbeVPPKFmQmj6zbSw8D42RnxSeae3Qbonk"
-            target="_blank"
-            rel="noreferrer"
-            className="text-green-400 underline-offset-4 hover:underline"
-          >
-            BONK.FUN
-          </a>{" "}
-          on the SOLANA Network
-        </p>
-
-        {/* Centered Video */}
-        <div className="flex justify-center items-center mt-10 w-full">
-          <video
-            id="gooseVideo"
-            src="/based-goose-october6-2025.mp4"
-            controls
-            autoPlay
-            loop
-            playsInline
-            className="max-w-[880px] rounded-xl border-4 border-green-400 shadow-[0_0_25px_rgba(0,255,0,.4)]"
-            style={{
-              display: "block",
-              margin: "0 auto",
-            }}
-          ></video>
-        </div>
-
-        <p className="mt-4 text-green-400 animate-pulse">
-          ONLINE ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-        </p>
-      </section>
-
-      {/* BUTTONS */}
-      <section className="mt-12 z-10 flex flex-wrap gap-3 items-center justify-center">
+      {/* X / TELEGRAM / BGM / GOOSE buttons */}
+      <div className="absolute top-[28%] flex justify-center gap-[1.7vw]">
         <a
           href="https://x.com/100XGOOSE"
           target="_blank"
           rel="noreferrer"
-          className="bg-gray-900 hover:bg-green-700 px-4 py-2 rounded-md border border-green-500 shadow-md"
-        >
-          X.COM
-        </a>
+          className="w-[7vw] h-[3vh] hover:brightness-150 transition-all duration-150"
+          title="X (Twitter)"
+        ></a>
         <a
           href="https://t.me/BASEDGOOSE100x"
           target="_blank"
           rel="noreferrer"
-          className="bg-gray-900 hover:bg-green-700 px-4 py-2 rounded-md border border-green-500 shadow-md"
-        >
-          TELEGRAM
-        </a>
+          className="w-[10vw] h-[3vh] hover:brightness-150 transition-all duration-150"
+          title="Telegram"
+        ></a>
         <a
           href="https://bonk.fun/token/3nZg1VZjT8qbeVPPKFmQmj6zbSw8D42RnxSeae3Qbonk"
           target="_blank"
           rel="noreferrer"
-          className="bg-gray-900 hover:bg-green-700 px-4 py-2 rounded-md border border-green-500 shadow-md"
-        >
-          BONK.FUN
-        </a>
-      </section>
+          className="w-[7vw] h-[3vh] hover:brightness-150 transition-all duration-150"
+          title="BGM"
+        ></a>
+        <a
+          href="https://app.turbos.finance/fun/#/fun/0x94e3147f4dd49206cb4ccf6c118d78e8b49130f6d1002529caeb24f7db3f61c2::goose::GOOSE"
+          target="_blank"
+          rel="noreferrer"
+          className="w-[8vw] h-[3vh] hover:brightness-150 transition-all duration-150"
+          title="GOOSE"
+        ></a>
+      </div>
 
-      {/* FOOTER */}
-      <footer className="mt-10 mb-6 text-xs text-gray-500 z-10 text-center">
-        © 2025 Based Goose Money. Powered by BONK.FUN.{" "}
-        <span className="italic">100x 1000x 10000X 1MX 1BX 1TX TNX</span>
-      </footer>
+      {/* PLAY button */}
+      <button
+        onClick={() => setIsVideoOpen(true)}
+        className="absolute bottom-[21%] w-[15vw] h-[6vh] hover:brightness-150 active:scale-95 transition-all duration-150"
+        title="Play Video"
+      ></button>
+
+      {/* VIDEO MODAL */}
+      {isVideoOpen && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black/90 backdrop-blur-sm">
+          <div className="relative border-4 border-green-500 rounded-lg shadow-[0_0_25px_rgba(0,255,0,0.5)] max-w-[800px]">
+            <video
+              src="/based-goose-october6-2025.mp4"
+              controls
+              autoPlay
+              playsInline
+              className="w-full h-auto rounded-md"
+            />
+            <button
+              onClick={() => setIsVideoOpen(false)}
+              className="absolute -top-10 right-0 bg-green-500 text-black px-3 py-1 font-bold text-sm hover:bg-green-400"
+            >
+              ✕ CLOSE
+            </button>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
